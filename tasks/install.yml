@@ -70,6 +70,7 @@
 - name: "Install percona packages and dependencies on Ubuntu (Percona version >= 8)"
   apt:
     name:
+      - "percona-server-common={{ mysql_version_major }}.{{ mysql_version_minor }}.{{ mysql_version_patch }}-*"
       - "percona-server-server={{ mysql_version_major }}.{{ mysql_version_minor }}.{{ mysql_version_patch }}-*"
       - "percona-server-client={{ mysql_version_major }}.{{ mysql_version_minor }}.{{ mysql_version_patch }}-*"
       - "percona-toolkit"
