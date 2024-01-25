@@ -79,11 +79,12 @@
 
 - name: Hold percona packages and dependencies on Ubuntu (Percona version >= 8)
   ansible.builtin.dpkg_selections:
-    name:
-      - "percona-server-common={{ mysql_version_major }}.{{ mysql_version_minor }}.{{ mysql_version_patch }}-*"
-      - "percona-server-server={{ mysql_version_major }}.{{ mysql_version_minor }}.{{ mysql_version_patch }}-*"
-      - "percona-server-client={{ mysql_version_major }}.{{ mysql_version_minor }}.{{ mysql_version_patch }}-*"
+    name: "{{ item }}"
     selection: hold
+  loop:
+    - "percona-server-common"
+    - "percona-server-server"
+    - "percona-server-client"
   when: mysql_version_major|int >= 8
 
 - name: "Adjust permissions of datadir"
